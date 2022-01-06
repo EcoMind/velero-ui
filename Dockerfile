@@ -5,7 +5,7 @@ RUN yarn install
 COPY . .
 RUN yarn build
 
-FROM nginx:stable-alpine as production-stage
+FROM nginx:1.21.5-alpine as production-stage
 ENV API_URL http://kubernetes.local
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 COPY --from=build-stage /app/dist /usr/share/nginx/html
